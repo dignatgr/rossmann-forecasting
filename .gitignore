@@ -1,0 +1,7 @@
+# input data
+/data
+
+# notebooks and python caches
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
