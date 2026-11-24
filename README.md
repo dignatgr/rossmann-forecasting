@@ -52,6 +52,11 @@ only by about 9%: it remains the hardest to predict, so the gap between folds wi
    - Feature ablation of competition, Promo2 and holiday features, alone and in combination. The best combination (competition + holidays) lowers CV RMSPE from 0.151 to 0.127, with early stopping pointing to 1,352 trees.
    - Final model: `num_leaves=31`, `n_estimators=1352`, `learning_rate=0.05`, 14 features.
 
+4. **Interpretation** (`03_models.ipynb`)
+   - SHAP values (`TreeExplainer`) computed on a sample of the training data show that the model learned business-consistent patterns. The store identity dominates, followed by promotions (about +35% sales on promo days), day of the week (weekends lowest, Monday highest) and the year-end season.
+   - The holiday features capture a pre-holiday rush: sales rise by roughly 10-20% in the 1-3 days before a holiday, and the effect vanishes after about 5 days.
+   - SHAP describes the model's behaviour, not causal effects.
+
 ## Metrics
 
 - **RMSPE**: Kaggle's metric; penalises relative errors, so low-sales days weigh more.
@@ -66,6 +71,7 @@ only by about 9%: it remains the hardest to predict, so the gap between folds wi
 - Results come from a single hold-out window of the end of the data. Seasonal effects outside this window (Christmas, Easter) are only covered by the CV folds.
 - Only open days are predicted. Store closures would need a separate model.
 - Not done: tuning beyond `num_leaves`, lag or rolling-sales features, prediction intervals, comparison with classical time-series models (ETS, ARIMA), deployment.
+- The hold-out window (mid-June to July) contains no holiday, so it does not measure the gain from the holiday features. That gain is visible in the cross-validation folds (Christmas and Easter).
 
 ## Repository structure
 
