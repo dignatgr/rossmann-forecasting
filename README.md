@@ -24,7 +24,7 @@ Rolling-origin cross-validation (3 folds, 48-day horizon, training data only):
 |---|---|---|
 | Baseline (store × day of week × promo) | 0.184 | 0.049 |
 | LightGBM, tuned (`num_leaves=31`) | 0.151 | 0.012 |
-| LightGBM, tuned + competition and holiday features | 0.127 | 0,020 |
+| LightGBM, tuned + competition and holiday features | 0.127 | 0.020 |
 
 The first fold (trained up to 2014-11-30, validated on the 48 days that follow) is the hardest, because the validation window covers the Christmas period, which the training data only partly describes.
 The standard deviation across folds increases (0.012 → 0.020) while the mean RMSPE drops.
